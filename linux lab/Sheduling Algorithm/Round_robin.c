@@ -1,14 +1,5 @@
-/* javapoint
-only for sequencial entries 
-
-no of process : 4
-process      AT       BT
-1            0        8
-2            1        5
-3            2        10
-4            3        11
-
-*/
+// javapoint
+// only for sequencial entries 
 #include<stdio.h>  
 #include<conio.h>  
   
@@ -39,14 +30,13 @@ void main()
     
     for(sum=0, i = 0; y!=0; )  
     {  
-      // if burst time lest than quantum 
       if(temp[i] <= quant && temp[i] > 0) // define the conditions   
       {  
-         sum = sum + temp[i];  // sum == completion time 
+         sum = sum + temp[i];  
          temp[i] = 0;  
          count=1;  
 
-        y--; //decrement the process no.                                  (CT - AT = TT)   (TT-BT = WT)
+        y--; //decrement the process no.  
         printf("\nProcess No[%d] \t\t %d\t\t\t\t %d\t\t\t %d", i+1, bt[i], sum-at[i], sum-at[i]-bt[i]);  
         wt = wt+sum-at[i]-bt[i];  
         tat = tat+sum-at[i];  
@@ -58,7 +48,6 @@ void main()
          sum = sum + quant;    
        }  
   
-  // Checking if any process comes while previous is excuting 
    if(at[i+1]<=sum) i++;   
    else i=0;   
 }  

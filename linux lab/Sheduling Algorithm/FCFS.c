@@ -2,14 +2,7 @@
 // The process that arrives first will be executed first, and so on.
 
 // Here is an example implementation of the FCFS scheduling algorithm in C:
-/*
-Process         AT          BT
-0               2            6
-1               5            3
-2               1            8
-3               0            3
-4               4            4
-*/
+
 #include<stdio.h>
 int main()
 {
@@ -27,15 +20,13 @@ int main()
        printf("enter burst time for process %d:",p[i]);
        scanf("%d",&bt[i]);
     }
-
-   // sorting according to arrival time 
+    
     for(i=0;i<n;i++)
     {
      for(j=0;j<(n-i);j++)
     {
       if(at[j]>at[j+1])
      {
-      // swapping arrival time , burst time , process
         temp=p[j+1];
         p[j+1]=p[j];
         p[j]=temp;

@@ -3,19 +3,19 @@ Enter no of pages:10
 Enter the reference string:7 5 9 4 3 7 9 6 2 1
 Enter no of frames:3
 */
-#include<stdio.h>
+#include <stdio.h>
 
-int findLRU(int time[] , int no_frames)
+int findLRU(int time[], int no_frames)
 {
-    int minium = time[0] , pos = 0 ;
+    int minium = time[0], pos = 0;
 
-    for(int i=1 ; i<no_frames ; i++)
+    for (int i = 1; i < no_frames; i++)
     {
-          if(time[i] < minium)
-          {
-             minium = time[i];
-             pos = i;
-          }
+        if (time[i] < minium)
+        {
+            minium = time[i];
+            pos = i;
+        }
     }
 
     return pos;
@@ -23,39 +23,38 @@ int findLRU(int time[] , int no_frames)
 
 int main()
 {
-    int no_pages , no_frames ;
+    int no_pages, no_frames;
 
     printf("enter number of pages : ");
-    scanf("%d",&no_pages);
+    scanf("%d", &no_pages);
 
     printf("enter number of frames : ");
-    scanf("%d",&no_frames);
+    scanf("%d", &no_frames);
 
-    int pages[no_pages] , frames[no_frames] , time[no_frames] , counter=0 , faults=0 , pos;
+    int pages[no_pages], frames[no_frames], time[no_frames], counter = 0, faults = 0, pos;
     printf("enter referance string : \n");
 
-    for(int i=0 ; i<no_pages ; i++)
+    for (int i = 0; i < no_pages; i++)
     {
-        scanf("%d",&pages[i]);
+        scanf("%d", &pages[i]);
     }
 
-    for(int i=0 ; i<no_frames ; i++)
+    for (int i = 0; i < no_frames; i++)
     {
-        frames[i] = -1 ;
+        frames[i] = -1;
     }
- 
-        printf("page \t f1 \t\t f2 \t\t f3 \t\t \n");
 
+    printf("page \t f1 \t\t f2 \t\t f3 \t\t \n");
 
-    //outer loop
-    for(int i=0 ; i<no_pages ; i++)
+    // outer loop
+    for (int i = 0; i < no_pages; i++)
     {
-        int flag1 = 0 , flag2 = 0;
+        int flag1 = 0, flag2 = 0;
 
         // if page presnet
-        for(int j=0 ; j<no_frames ; j++)
+        for (int j = 0; j < no_frames; j++)
         {
-            if(pages[i] == frames[j])
+            if (pages[i] == frames[j])
             {
                 counter++;
                 faults++;
@@ -67,42 +66,40 @@ int main()
         }
 
         // if frame is free
-        if(flag1 == 0)
-       {
-            for(int j=0 ; j<no_frames ; j++)
+        if (flag1 == 0)
         {
-            if(frames[j] == -1)
+            for (int j = 0; j < no_frames; j++)
             {
-                counter++;
-                faults++;
-                frames[j] = pages[i];
-                time[j] = counter;
-                flag2 = 1;
-                break;
+                if (frames[j] == -1)
+                {
+                    counter++;
+                    faults++;
+                    frames[j] = pages[i];
+                    time[j] = counter;
+                    flag2 = 1;
+                    break;
+                }
             }
         }
 
-       }
-
         // if frame is not free
-        if(flag2 == 0)
+        if (flag2 == 0)
         {
-            pos = findLRU(time , no_frames);
+            pos = findLRU(time, no_frames);
             counter++;
             faults++;
             time[pos] = counter;
             frames[pos] = pages[i];
         }
-        
-        printf("%d \t ",pages[i]);
-        for(int j=0 ; j<no_frames ; j++)
+
+        printf("%d \t ", pages[i]);
+        for (int j = 0; j < no_frames; j++)
         {
-            printf("%d \t \t",frames[j]);
+            printf("%d \t \t", frames[j]);
         }
 
         printf("\n");
     }
 
-    printf("no of faults are : %d \n",faults);
-
+    printf("no of faults are : %d \n", faults);
 }

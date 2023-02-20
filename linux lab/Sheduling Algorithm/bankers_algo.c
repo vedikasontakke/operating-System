@@ -1,26 +1,4 @@
 // Banker's Algorithm
-
-/*
-no po processes : 5
-no of resources : 3
-
-Allocation matrix 
-0 1 0
-2 0 0
-3 0 2
-2 1 1
-0 0 2
-
-MAX  matrix 
-7 5 3
-3 2 2
-9 0 2
-2 2 2
-4 3 3
-
-availabe 3 3 2
-
-*/
 #include <stdio.h>
 
 int max[10][10] , allocation[10][10] , need[10][10] ;
